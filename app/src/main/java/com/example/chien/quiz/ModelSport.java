@@ -6,4 +6,8 @@ public class ModelSport {
     public ModelSport(String as) {
         this.as = as;
     }
+
+    public String getAs() {
+        return as;
+    }
 }

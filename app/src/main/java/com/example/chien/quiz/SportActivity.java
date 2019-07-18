@@ -1,5 +1,6 @@
 package com.example.chien.quiz;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,12 +46,7 @@ public class SportActivity extends AppCompatActivity {
         GetQsSport getQsSport = new GetQsSport();
         getQsSport.execute("http://dotplays.com/android/lab3.json");
 
-        mLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                
-            }
-        });
+
 
     }
 
@@ -100,7 +97,7 @@ public class SportActivity extends AppCompatActivity {
                 JSONObject sport = quiz.getJSONObject("sport");
                 JSONObject q1 = sport.getJSONObject("q1");
                 String qs = q1.getString("question");
-                String answer = q1.getString("answer");
+                final String answer = q1.getString("answer");
                 Log.e("Qs", qs);
                 mTvCauHoi.setText(qs);
 
@@ -112,6 +109,24 @@ public class SportActivity extends AppCompatActivity {
                 }
                 adapterSport.notifyDataSetChanged();
 
+
+                mLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                        String selected =((TextView)view.findViewById(R.id.tvAs)).getText().toString();
+                        int a =0;
+                        if (selected.equals(answer)) {
+                            a = a +1;
+                        }
+
+                        Log.e("mark" ,"" + a);
+                        Intent intent = new Intent(SportActivity.this, ResultActivitySport.class);
+                        intent.putExtra("mark",a);
+                        startActivity(intent);
+
+                    }
+                });
             } catch (JSONException e) {
                 e.printStackTrace();
             }
