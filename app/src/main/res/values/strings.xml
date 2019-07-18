@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="Home">Home</string>
+    <string name="Sport">Sport</string>
+    <string name="Marth">Marth</string>
+    <string name="Question">Question ?</string>
+    <string name="Answer">Answer</string>
+    <string name="cauhoi">Cau hoi</string>
+    <string name="NextQs">Next Question</string>
+    <string name="Result">Result</string>
+    <string name="Bandalamdung">Bạn đã làm đúng</string>
+</resources>
